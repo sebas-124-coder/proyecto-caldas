@@ -9,6 +9,7 @@ var connectionString = builder.Configuration.GetConnectionString("Deafaultconnec
 
 builder.Services.AddDbContext<DBContext>(options => options.UseNpgsql(connectionString));
 builder.Services.AddScoped<IUsuario, UsuarioServices>();
+builder.Services.AddScoped<IPasswordservice, passwordservice>();
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 

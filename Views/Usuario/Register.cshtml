@@ -1,0 +1,28 @@
+@using System.Threading.Tasks.Dataflow
+@model proyecto_caldas.Models.usuariomodel
+
+<h1>Registrarse</h1>
+
+@using (Html.BeginForm(actionName: "Register", controllerName: "Usuario", FormMethod.Post))
+{
+    <label>Nombre</label>
+
+    @Html.TextBoxFor(modelo => modelo.Usuario_Nombre)
+    <br />
+    <label> Apellido </label>
+
+    @Html.TextBoxFor(modelo => modelo.Usuario_Apellido)
+    <br />
+    <label> EmaiL </label>
+
+    @Html.TextBoxFor(modelo => modelo.Usuario_Correo)
+    <br />
+    <label> Password </label>
+
+    @Html.PasswordFor(modelo => modelo.Usuario_Nombre)
+    <br />
+    <input type="submit" value="Guardar" />
+}
+}
+}
+}

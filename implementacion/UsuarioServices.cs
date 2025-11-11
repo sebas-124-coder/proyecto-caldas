@@ -13,14 +13,20 @@ namespace proyecto_caldas.implementacion
     public class UsuarioServices : IUsuario
     {
         private readonly DBContext DbContext;
-        public UsuarioServices(DBContext DbContext)
+
+        public IPasswordservice IPasswordservice { get; }
+
+        private readonly IPasswordservice passwordservice;
+        public UsuarioServices(DBContext DbContext,IPasswordservice passwordservice)
         {
             this.DbContext = DbContext;
+            this.IPasswordservice = passwordservice;
         }
-        public async void CrearUsuario(usuariomodel arnol)
+        public async Task CrearUsuario(usuariomodel arnol)
         {
             if (arnol != null)
             {
+                arnol.Usuario_Contrasena = passwordservice.Hashpassword(arnol.Usuario_Contrasena);
                 DbContext.Add(arnol);
                 await DbContext.SaveChangesAsync();
             }

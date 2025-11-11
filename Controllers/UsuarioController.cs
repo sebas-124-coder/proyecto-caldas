@@ -12,27 +12,36 @@ using proyecto_caldas.services;
 namespace proyecto_caldas.Controllers
 {
     [Route("user")]
+    [ApiController]
     public class UsuarioController : Controller
     {
         private readonly IUsuario usuarioservice;
-        
+
         public UsuarioController(IUsuario usuarioService)
         {
             this.usuarioservice = usuarioService;
         }
         [HttpPost]
         [Route("register")]
-       public IActionResult Register(usuariomodel usuario)
+        public async Task<IActionResult> Register(usuariomodel usuario)
         {
             if (usuario != null)
             {
-                usuarioservice.CrearUsuario(usuario);
+                await usuarioservice.CrearUsuario(usuario);
                 return Ok("usuario creado");
             }
             else
             {
                 return BadRequest("Usuario no puede ser null");
             }
-       }
+        }
+        [HttpGet]
+        [Route("register")]
+        public IActionResult Register()
+        {
+            return View();
+
         }
     }
+
+}
